@@ -1,5 +1,7 @@
 package com.unarbre.stringcalculator;
 
+import java.util.Arrays;
+
 final class StringCalculator {
 
     private static StringCalculator instance;
@@ -12,5 +14,8 @@ final class StringCalculator {
         return instance;
     }
 
-
+    public int add(String rawNumbers) {
+        var numbers = new int [] { rawNumbers.charAt(0), rawNumbers.charAt(2)};
+        return Arrays.stream(numbers).sum();
+    }
 }

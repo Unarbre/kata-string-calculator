@@ -20,20 +20,13 @@ public class StringCalculatorTest {
 
 
     @Test
-    public void should_return_zero_when_string_is_null() {
-        assertEquals(this.stringCalculator.add(""), 0);
-    }
-
-
-    @Test
-    public void should_return_first_value_if_there_is_only_one() {
-        assertEquals(this.stringCalculator.add("3, "), 3);
+    public void should_return_first_value_if_second_is_empty() {
+        assertEquals(3, this.stringCalculator.add("3, "));
     }
 
     @Test
-    public void should_throw_parse_error_if_any_value_is_not_a_number() {
-        NumberParseException exception = assertThrows(NumberParseException.class, () -> this.stringCalculator.add("a, 3"));
-        assertEquals(exception.getMessage(), "a is not a valid number");
+    public void should_return_second_value_if_first_is_empty() {
+        assertEquals(3, this.stringCalculator.add(",3"));
     }
 
     //endregion
