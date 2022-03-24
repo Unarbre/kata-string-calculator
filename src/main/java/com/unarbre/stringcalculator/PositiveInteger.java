@@ -3,9 +3,6 @@ package com.unarbre.stringcalculator;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.utils.NumberUtils;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 public class PositiveInteger {
 
     private final int value;
@@ -32,6 +29,12 @@ public class PositiveInteger {
         }
 
         public PositiveIntegerFromStringBuilder rawValue(String numberAsString) {
+
+            if (numberAsString.trim().isEmpty()) {
+                value = 0;
+                return this;
+            }
+
             if (!NumberUtils.isInteger(numberAsString))
                 throw new NumberParseException(numberAsString + " could'nt be parsed as an integer positive number");
 
