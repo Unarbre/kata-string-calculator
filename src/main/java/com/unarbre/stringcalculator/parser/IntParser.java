@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class IntParser {
 
-    private final String DELIMITER = ",";
+    private final String[] SEPARATORS = {",", "\n"};
 
     public List<PositiveInteger> parse(String input) {
         var charQueue = new ArrayDeque<>(Arrays.asList(input.split("")));
@@ -27,13 +27,13 @@ public class IntParser {
                     .build());
 
             case Deque<String> remain
-                    && remain.getFirst().equals(DELIMITER)
+                    && Arrays.asList(SEPARATORS).contains(remain.getFirst())
                     && ongoingString.isEmpty() -> throw
                     new NumberParseException("A delimiter must be preceded from at least one character");
 
 
             case Deque<String> remain
-                    && remain.getFirst().equals(DELIMITER) -> new ArrayList<>() {{
+                    &&  Arrays.asList(SEPARATORS).contains(remain.getFirst()) -> new ArrayList<>() {{
                 add(PositiveInteger.createNewFromString().rawValue(ongoingString).build());
                 addAll(parseNumbers("", remainingInput.stream().skip(1).collect(Collectors.toCollection(ArrayDeque::new))));
             }};
