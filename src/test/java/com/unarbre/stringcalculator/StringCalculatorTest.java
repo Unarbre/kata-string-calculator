@@ -1,16 +1,16 @@
 package com.unarbre.stringcalculator;
 
 
-import com.unarbre.stringcalculator.exceptions.NumberParseException;
-import com.unarbre.stringcalculator.parser.IntParser;
+import com.unarbre.stringcalculator.utils.IntParserUtils;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //STEP 1 GREEN STATE
 public class StringCalculatorTest {
 
 
-    private final StringCalculator stringCalculator = new StringCalculator(new IntParser());
+    private final StringCalculator stringCalculator = new StringCalculator(IntParserUtils.getDefaultIntParser());
 
     // region Add
 

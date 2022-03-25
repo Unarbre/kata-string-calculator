@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class IntParserTest {
 
-    private final IntParser intParser = new IntParser();
+    private final IntParser defaultIntParser = IntParserUtils.getDefaultIntParser();
 
     @Test
     public void should_throw_error_on_separator_without_preceding_number() {
         NumberParseException exception = assertThrows(
-                NumberParseException.class, () -> this.intParser.parse(",3"));
+                NumberParseException.class, () -> this.defaultIntParser.parse(",3"));
 
         assertEquals("A delimiter must be preceded from at least one character", exception.getMessage());
     }
@@ -28,7 +28,7 @@ public class IntParserTest {
                 List.of(CheckedInteger.createNewFromString().rawValue("0").build(),
                         CheckedInteger.createNewFromString().rawValue("0").build()
                 ),
-                this.intParser.parse(" , "));
+                this.defaultIntParser.parse(" , "));
 
     }
 
@@ -38,17 +38,17 @@ public class IntParserTest {
         assertEquals(
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build()
-                ), this.intParser.parse("3,5"));
+                ), this.defaultIntParser.parse("3,5"));
     }
 
     @Test
-    public void should_accept_line_separator_and_semicolon_as_separators() {
+    public void should_accept_line_separator_and_semicolons_on_default() {
 
         assertEquals(
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build(),
                         CheckedInteger.createNewFromString().rawValue("8").build()
-                ), this.intParser.parse("3\n5,8"));
+                ), this.defaultIntParser.parse("3\n5,8"));
     }
 
     @Test

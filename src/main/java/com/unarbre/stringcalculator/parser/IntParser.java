@@ -3,13 +3,18 @@ package com.unarbre.stringcalculator.parser;
 
 import com.unarbre.stringcalculator.CheckedInteger;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
+import com.unarbre.stringcalculator.parser.separators.SeparatorStrategy;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class IntParser {
 
-    private final String[] SEPARATORS = {",", "\n"};
+    private final SeparatorStrategy separatorStrategy;
+
+    public IntParser(SeparatorStrategy separatorStrategy) {
+        this.separatorStrategy = separatorStrategy;
+    }
 
     public List<CheckedInteger> parse(String input) {
         var charQueue = new ArrayDeque<>(Arrays.asList(input.split("")));
@@ -27,13 +32,13 @@ public class IntParser {
                     .build());
 
             case Deque<String> remain
-                    && Arrays.asList(SEPARATORS).contains(remain.getFirst())
+                    && this.separatorStrategy.isASeparator(remain.getFirst())
                     && ongoingString.isEmpty() -> throw
                     new NumberParseException("A delimiter must be preceded from at least one character");
 
 
             case Deque<String> remain
-                    &&  Arrays.asList(SEPARATORS).contains(remain.getFirst()) -> new ArrayList<>() {{
+                    && this.separatorStrategy.isASeparator(remain.getFirst()) -> new ArrayList<>() {{
                 add(CheckedInteger.createNewFromString().rawValue(ongoingString).build());
                 addAll(parseNumbers("", remainingInput.stream().skip(1).collect(Collectors.toCollection(ArrayDeque::new))));
             }};
