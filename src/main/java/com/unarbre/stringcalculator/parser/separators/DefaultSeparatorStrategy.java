@@ -2,7 +2,7 @@ package com.unarbre.stringcalculator.parser.separators;
 
 import java.util.List;
 
-public class DefaultSeparator implements SeparatorStrategy {
+public class DefaultSeparatorStrategy implements SeparatorStrategy {
 
     private final String[] SEPARATORS = {",", "\n"};
 

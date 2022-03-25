@@ -2,11 +2,11 @@ package com.unarbre.stringcalculator.parser.separators;
 
 import java.util.Objects;
 
-public class CustomSeparator implements SeparatorStrategy {
+public class CustomSeparatorStrategy implements SeparatorStrategy {
 
     private final String separators;
 
-    public CustomSeparator(String separators) {
+    public CustomSeparatorStrategy(String separators) {
         this.separators = separators;
     }
 

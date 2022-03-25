@@ -55,8 +55,6 @@ public class IntParserTest {
     public void should_accept_any_separators_on_custom() {
         var bParser = IntParserUtils.getCustomIntParser("b");
 
-
-
         assertEquals(
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build(),
@@ -71,6 +69,17 @@ public class IntParserTest {
                 NumberParseException.class, () -> onlySemicolonParser.parse("3;5\n4"));
 
         assertEquals("5\n4 could'nt be parsed as an integer positive number", exception.getMessage());
+    }
+
+    @Test
+    public void should_handle_to_cut_every_character_from_empty_custom_character() {
+        var emptyCustomParser = IntParserUtils.getCustomIntParser("");
+
+        assertEquals(
+                List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
+                        CheckedInteger.createNewFromString().rawValue("4").build(),
+                        CheckedInteger.createNewFromString().rawValue("5").build())
+                , emptyCustomParser.parse("345"));
     }
 
 }
