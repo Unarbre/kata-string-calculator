@@ -13,7 +13,7 @@ final class StringCalculator {
     public int add(String rawNumbers) {
         return inputParser.parse(rawNumbers)
                 .stream()
-                .mapToInt(PositiveInteger::getValue)
+                .mapToInt(CheckedInteger::getValue)
                 .sum();
     }
 }

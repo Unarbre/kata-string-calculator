@@ -3,7 +3,7 @@ package com.unarbre.stringcalculator;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.utils.NumberUtils;
 
-public record PositiveInteger(int value) {
+public record CheckedInteger(int value) {
 
     static public PositiveIntegerFromStringBuilder createNewFromString() {
         return new PositiveIntegerFromStringBuilder();
@@ -37,8 +37,8 @@ public record PositiveInteger(int value) {
         }
 
 
-        public PositiveInteger build() {
-            return new PositiveInteger(value);
+        public CheckedInteger build() {
+            return new CheckedInteger(value);
         }
 
 

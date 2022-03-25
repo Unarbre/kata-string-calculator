@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PositiveIntegerTest {
+public class CheckedIntegerTest {
 
 
     @Test
     void should_create_coherent_integer_decorator_on_parsable_string() {
-        var number = PositiveInteger
+        var number = CheckedInteger
                 .createNewFromString()
                 .rawValue("43")
                 .build();
@@ -21,7 +21,7 @@ public class PositiveIntegerTest {
 
     @Test
     void should_not_throw_error_on_negative_value() {
-        var number = PositiveInteger
+        var number = CheckedInteger
                 .createNewFromString()
                 .rawValue("-3")
                 .build();
@@ -31,7 +31,7 @@ public class PositiveIntegerTest {
 
     @Test
     void should_handle_untrimmed_numbers() {
-        var number = PositiveInteger
+        var number = CheckedInteger
                 .createNewFromString()
                 .rawValue("  33 ")
                 .build();
@@ -41,7 +41,7 @@ public class PositiveIntegerTest {
     @Test
     void should_throw_error_on_alphabetical_characters() {
         NumberParseException exception = assertThrows(
-                NumberParseException.class, () -> PositiveInteger
+                NumberParseException.class, () -> CheckedInteger
                         .createNewFromString()
                         .rawValue("a")
                         .build());
@@ -50,7 +50,7 @@ public class PositiveIntegerTest {
 
     @Test
     void should_throw_error_on_decimal_value() {
-        NumberParseException exception = assertThrows(NumberParseException.class, () -> new PositiveInteger
+        NumberParseException exception = assertThrows(NumberParseException.class, () -> new CheckedInteger
                 .PositiveIntegerFromStringBuilder()
                 .rawValue("3.2")
                 .build());
@@ -59,7 +59,7 @@ public class PositiveIntegerTest {
 
     @Test
     public void should_return_zero_when_string_is_empty() {
-        var number = PositiveInteger
+        var number = CheckedInteger
                 .createNewFromString()
                 .rawValue("")
                 .build();

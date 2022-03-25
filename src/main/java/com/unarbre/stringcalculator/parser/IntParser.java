@@ -1,7 +1,7 @@
 package com.unarbre.stringcalculator.parser;
 
 
-import com.unarbre.stringcalculator.PositiveInteger;
+import com.unarbre.stringcalculator.CheckedInteger;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 
 import java.util.*;
@@ -11,17 +11,17 @@ public class IntParser {
 
     private final String[] SEPARATORS = {",", "\n"};
 
-    public List<PositiveInteger> parse(String input) {
+    public List<CheckedInteger> parse(String input) {
         var charQueue = new ArrayDeque<>(Arrays.asList(input.split("")));
         return this.parseNumbers("", charQueue);
     }
 
 
-    private List<PositiveInteger> parseNumbers(String ongoingString,
-                                               Deque<String> remainingInput) {
+    private List<CheckedInteger> parseNumbers(String ongoingString,
+                                              Deque<String> remainingInput) {
 
         return switch (remainingInput) {
-            case Deque<String> remain && remain.isEmpty() -> List.of(PositiveInteger
+            case Deque<String> remain && remain.isEmpty() -> List.of(CheckedInteger
                     .createNewFromString()
                     .rawValue(ongoingString)
                     .build());
@@ -34,7 +34,7 @@ public class IntParser {
 
             case Deque<String> remain
                     &&  Arrays.asList(SEPARATORS).contains(remain.getFirst()) -> new ArrayList<>() {{
-                add(PositiveInteger.createNewFromString().rawValue(ongoingString).build());
+                add(CheckedInteger.createNewFromString().rawValue(ongoingString).build());
                 addAll(parseNumbers("", remainingInput.stream().skip(1).collect(Collectors.toCollection(ArrayDeque::new))));
             }};
 
