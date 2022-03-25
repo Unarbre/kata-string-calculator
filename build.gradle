@@ -19,6 +19,18 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs +=[ "-parameters", "--enable-preview"]
+}
+
+compileTestJava {
+    options.compilerArgs +=[ "-parameters", "--enable-preview"]
+}
+
 test {
     useJUnitPlatform()
+    jvmArgs("--enable-preview")
 }
+
+

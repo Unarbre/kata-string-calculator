@@ -1,21 +1,19 @@
 package com.unarbre.stringcalculator;
 
-import java.util.Arrays;
+import com.unarbre.stringcalculator.parser.IntParser;
 
 final class StringCalculator {
 
-    private static StringCalculator instance;
+    private final IntParser inputParser;
 
-    private StringCalculator() {}
-
-    public static StringCalculator getInstance() {
-        if (instance == null) instance = new StringCalculator();
-
-        return instance;
+    public StringCalculator(IntParser inputParser) {
+        this.inputParser = inputParser;
     }
 
     public int add(String rawNumbers) {
-        var numbers = new int [] { rawNumbers.charAt(0), rawNumbers.charAt(2)};
-        return Arrays.stream(numbers).sum();
+        return inputParser.parse(rawNumbers)
+                .stream()
+                .mapToInt(PositiveInteger::getValue)
+                .sum();
     }
 }

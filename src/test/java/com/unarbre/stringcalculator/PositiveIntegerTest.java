@@ -23,9 +23,19 @@ public class PositiveIntegerTest {
     void should_not_throw_error_on_negative_value() {
         var number = PositiveInteger
                 .createNewFromString()
-                        .rawValue("-3")
-                                .build();
+                .rawValue("-3")
+                .build();
         assertEquals(-3, number.getValue());
+    }
+
+
+    @Test
+    void should_handle_untrimmed_numbers() {
+        var number = PositiveInteger
+                .createNewFromString()
+                .rawValue("  33 ")
+                .build();
+        assertEquals(33, number.getValue());
     }
 
     @Test
