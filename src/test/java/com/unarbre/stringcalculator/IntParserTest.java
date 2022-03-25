@@ -2,6 +2,7 @@ package com.unarbre.stringcalculator;
 
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.parser.IntParser;
+import com.unarbre.stringcalculator.utils.IntParserUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -48,6 +49,28 @@ public class IntParserTest {
                         CheckedInteger.createNewFromString().rawValue("5").build(),
                         CheckedInteger.createNewFromString().rawValue("8").build()
                 ), this.intParser.parse("3\n5,8"));
+    }
+
+    @Test
+    public void should_accept_any_separators_on_custom() {
+        var bParser = IntParserUtils.getCustomIntParser("b");
+
+
+
+        assertEquals(
+                List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
+                        CheckedInteger.createNewFromString().rawValue("5").build(),
+                        CheckedInteger.createNewFromString().rawValue("8").build()
+                ), bParser.parse("3b5b8"));
+    }
+
+    @Test
+    public void should_accept_only_custom_character_on_custom_separator() {
+        var onlySemicolonParser = IntParserUtils.getCustomIntParser(";");
+        NumberParseException exception = assertThrows(
+                NumberParseException.class, () -> onlySemicolonParser.parse("3;5\n4"));
+
+        assertEquals("5\n4 could'nt be parsed as an integer positive number", exception.getMessage());
     }
 
 }
