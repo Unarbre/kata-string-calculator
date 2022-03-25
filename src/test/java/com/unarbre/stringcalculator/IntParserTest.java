@@ -68,18 +68,17 @@ public class IntParserTest {
         NumberParseException exception = assertThrows(
                 NumberParseException.class, () -> onlySemicolonParser.parse("3;5\n4"));
 
-        assertEquals("5\n4 could'nt be parsed as an integer positive number", exception.getMessage());
+        assertEquals("5\n4 could'nt be parsed as an integer number", exception.getMessage());
     }
 
     @Test
-    public void should_handle_to_cut_every_character_from_empty_custom_character() {
+    public void should_take_the_whole_string_on_empty_separator() {
         var emptyCustomParser = IntParserUtils.getCustomIntParser("");
 
         assertEquals(
-                List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
-                        CheckedInteger.createNewFromString().rawValue("4").build(),
-                        CheckedInteger.createNewFromString().rawValue("5").build())
-                , emptyCustomParser.parse("345"));
+                List.of(
+                        CheckedInteger.createNewFromString().rawValue("345").build()),
+                emptyCustomParser.parse("345"));
     }
 
 }
