@@ -39,4 +39,14 @@ public class IntParserTest {
         ), this.intParser.parse("3,5"));
     }
 
+    @Test
+    public void should_accept_line_separator_and_semicolon_as_separators() {
+
+        assertEquals(
+                List.of(PositiveInteger.createNewFromString().rawValue("3").build(),
+                        PositiveInteger.createNewFromString().rawValue("5").build(),
+                        PositiveInteger.createNewFromString().rawValue("8").build()
+                ), this.intParser.parse("3\n5,8"));
+    }
+
 }

@@ -3,36 +3,7 @@ package com.unarbre.stringcalculator;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.utils.NumberUtils;
 
-import java.util.Objects;
-
-public class PositiveInteger {
-
-    private final int value;
-
-    private PositiveInteger(int value) {
-
-        this.value = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PositiveInteger that = (PositiveInteger) o;
-        return value == that.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public String toString() {
-        return "PositiveInteger{" +
-                "value=" + value +
-                '}';
-    }
+public record PositiveInteger(int value) {
 
     static public PositiveIntegerFromStringBuilder createNewFromString() {
         return new PositiveIntegerFromStringBuilder();
@@ -64,7 +35,6 @@ public class PositiveInteger {
             value = Integer.parseInt(trimmedString);
             return this;
         }
-
 
 
         public PositiveInteger build() {
