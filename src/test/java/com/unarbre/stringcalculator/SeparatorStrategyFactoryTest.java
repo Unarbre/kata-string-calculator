@@ -26,14 +26,6 @@ public class SeparatorStrategyFactoryTest {
     }
 
     @Test
-    public void should_throw_error_on_unspecified_end_of_separator() {
-        SeparatorUnparsableException exception = assertThrows(
-                SeparatorUnparsableException.class, () -> this.separatorStrategyFactory.get("\\dog"));
-
-        assertEquals("\\dog separator couldn't be parse. Please provide an \\n at the end", exception.getMessage());
-    }
-
-    @Test
     public void should_return_custom_with_empty_separator() {
         Assertions.assertEquals(new CustomSeparatorStrategy(""), this.separatorStrategyFactory.get("\\\n35"));
     }

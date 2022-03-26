@@ -27,6 +27,11 @@ public class UserInputTest {
     }
 
     @Test
+    public void should_handle_empty_separator_and_empty_value() {
+        assertEquals("", new UserInput("\\\n").getSeparator());
+    }
+
+    @Test
     public void should_return_empty_string_if_no_separator() {
         assertEquals("", new UserInput("33").getSeparator());
     }
@@ -37,7 +42,7 @@ public class UserInputTest {
     }
 
     @Test
-    public void should_return_value_without_separator_on_absent_separaot() {
+    public void should_return_value_without_separator_on_absent_separator() {
         assertEquals("333", new UserInput("333").getCleanedValue());
     }
 }

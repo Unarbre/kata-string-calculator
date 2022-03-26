@@ -4,6 +4,8 @@ import com.unarbre.stringcalculator.parser.separators.SeparatorUnparsableExcepti
 
 public class UserInput {
 
+    private final String START_SEPARATOR_STRING = "\\";
+
     private final String value;
 
     public UserInput(String value) {
@@ -38,6 +40,6 @@ public class UserInput {
     }
 
     public boolean hasSeparator() {
-        return this.value.startsWith("\\");
+        return this.value.startsWith(this.START_SEPARATOR_STRING);
     }
 }
