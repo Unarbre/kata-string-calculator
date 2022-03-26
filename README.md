@@ -7,7 +7,7 @@ You must run it with a version of java 17+ as it relies on pattern matching.
 
 Command to run :
 ```shell
-gradle run --enable-preview
+gradle run
 ```
 
 ## Incremental kata

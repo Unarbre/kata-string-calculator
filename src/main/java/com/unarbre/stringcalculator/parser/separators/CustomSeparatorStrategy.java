@@ -11,8 +11,14 @@ public class CustomSeparatorStrategy implements SeparatorStrategy {
     }
 
     @Override
-    public boolean isASeparator(String checkedSeparator) {
-        return Objects.equals(this.separator, checkedSeparator);
+    public boolean hasSeparatorBeenMet(String checkedString) {
+        if (separator.isEmpty()) return false;
+        return checkedString.endsWith(separator);
+    }
+
+    @Override
+    public String extractSeparator(String toExtract) {
+        return toExtract.substring(0, toExtract.length() - this.separator.length());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.unarbre.stringcalculator.parser.separators;
 
 public interface SeparatorStrategy {
-    boolean isASeparator(String checkedSeparator);
+    boolean hasSeparatorBeenMet(String checkedSeparator);
+    String extractSeparator(String toExtract);
 }

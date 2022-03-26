@@ -9,8 +9,13 @@ public class DefaultSeparatorStrategy implements SeparatorStrategy {
     private final String[] SEPARATORS = {",", "\n"};
 
     @Override
-    public boolean isASeparator(String checkedSeparator) {
-        return List.of(SEPARATORS).contains(checkedSeparator);
+    public boolean hasSeparatorBeenMet(String checkedString) {
+        return Arrays.stream(SEPARATORS).anyMatch(checkedString::endsWith);
+    }
+
+    @Override
+    public String extractSeparator(String toExtract) {
+        return toExtract.substring(0, toExtract.length() - 1);
     }
 
     @Override

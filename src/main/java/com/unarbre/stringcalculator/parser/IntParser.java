@@ -6,8 +6,9 @@ import com.unarbre.stringcalculator.UserInput;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.parser.separators.SeparatorStrategy;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class IntParser {
 
@@ -32,15 +33,17 @@ public class IntParser {
                     .build());
 
             case Deque<String> remain
-                    && this.separatorStrategy.isASeparator(remain.getFirst())
+                    && this.separatorStrategy.hasSeparatorBeenMet(ongoingString + remain.getFirst())
                     && ongoingString.isEmpty() -> throw
                     new NumberParseException("A delimiter must be preceded from at least one character");
 
 
             case Deque<String> remain
-                    && this.separatorStrategy.isASeparator(remain.getFirst()) -> new ArrayList<>() {{
-                add(CheckedInteger.createNewFromString().rawValue(ongoingString).build());
-                addAll(parseNumbers("", remainingInput.stream().skip(1).collect(Collectors.toCollection(ArrayDeque::new))));
+                    && this.separatorStrategy.hasSeparatorBeenMet(ongoingString + remain.getFirst()) -> new ArrayList<>() {{
+                add(CheckedInteger
+                        .createNewFromString()
+                        .rawValue(separatorStrategy.extractSeparator(ongoingString + remainingInput.pop())).build());
+                addAll(parseNumbers("", remainingInput));
             }};
 
             default -> parseNumbers(ongoingString + remainingInput.pop(), remainingInput);
