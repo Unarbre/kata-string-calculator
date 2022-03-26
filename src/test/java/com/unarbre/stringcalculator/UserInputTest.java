@@ -1,8 +1,10 @@
 package com.unarbre.stringcalculator;
 
+import com.unarbre.stringcalculator.parser.separators.SeparatorUnparsableException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserInputTest {
 
@@ -14,6 +16,14 @@ public class UserInputTest {
     @Test
     public void should_return_separator_string_property() {
         assertEquals("dog", new UserInput("\\dog\n33").getSeparator());
+    }
+
+    @Test
+    public void should_throw_error_on_unspecified_end_of_separator() {
+        SeparatorUnparsableException exception = assertThrows(
+                SeparatorUnparsableException.class, () -> new UserInput("\\dog").getSeparator());
+
+        assertEquals("\\dog separator couldn't be parse. Please provide an \\n at the end of the separator", exception.getMessage());
     }
 
     @Test
