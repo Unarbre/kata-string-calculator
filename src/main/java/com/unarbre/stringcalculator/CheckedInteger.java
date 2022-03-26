@@ -17,10 +17,6 @@ public record CheckedInteger (int value) {
 
         private int value;
 
-        public CheckedIntegerFromStringBuilder() {
-
-        }
-
         public CheckedIntegerFromStringBuilder rawValue(String numberAsString) {
             var trimmedString = numberAsString.trim();
 
