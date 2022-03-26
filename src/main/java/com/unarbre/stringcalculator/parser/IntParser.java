@@ -2,6 +2,7 @@ package com.unarbre.stringcalculator.parser;
 
 
 import com.unarbre.stringcalculator.CheckedInteger;
+import com.unarbre.stringcalculator.UserInput;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import com.unarbre.stringcalculator.parser.separators.SeparatorStrategy;
 
@@ -16,9 +17,8 @@ public class IntParser {
         this.separatorStrategy = separatorStrategy;
     }
 
-    public List<CheckedInteger> parse(String input) {
-        var charQueue = new ArrayDeque<>(Arrays.asList(input.split("")));
-        return this.parseNumbers("", charQueue);
+    public List<CheckedInteger> parse(UserInput input) {
+        return this.parseNumbers("", input.valueToDeque());
     }
 
 

@@ -17,7 +17,7 @@ public class IntParserTest {
     @Test
     public void should_throw_error_on_separator_without_preceding_number() {
         NumberParseException exception = assertThrows(
-                NumberParseException.class, () -> this.defaultIntParser.parse(",3"));
+                NumberParseException.class, () -> this.defaultIntParser.parse(new UserInput(",3")));
 
         assertEquals("A delimiter must be preceded from at least one character", exception.getMessage());
     }
@@ -28,7 +28,7 @@ public class IntParserTest {
                 List.of(CheckedInteger.createNewFromString().rawValue("0").build(),
                         CheckedInteger.createNewFromString().rawValue("0").build()
                 ),
-                this.defaultIntParser.parse(" , "));
+                this.defaultIntParser.parse(new UserInput(" , ")));
 
     }
 
@@ -38,7 +38,7 @@ public class IntParserTest {
         assertEquals(
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build()
-                ), this.defaultIntParser.parse("3,5"));
+                ), this.defaultIntParser.parse(new UserInput("3,5")));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class IntParserTest {
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build(),
                         CheckedInteger.createNewFromString().rawValue("8").build()
-                ), this.defaultIntParser.parse("3\n5,8"));
+                ), this.defaultIntParser.parse(new UserInput("3\n5,8")));
     }
 
     @Test
@@ -59,14 +59,14 @@ public class IntParserTest {
                 List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
                         CheckedInteger.createNewFromString().rawValue("5").build(),
                         CheckedInteger.createNewFromString().rawValue("8").build()
-                ), bParser.parse("3b5b8"));
+                ), bParser.parse(new UserInput("3b5b8")));
     }
 
     @Test
     public void should_accept_only_custom_character_on_custom_separator() {
         var onlySemicolonParser = IntParserUtils.getCustomIntParser(";");
         NumberParseException exception = assertThrows(
-                NumberParseException.class, () -> onlySemicolonParser.parse("3;5\n4"));
+                NumberParseException.class, () -> onlySemicolonParser.parse(new UserInput("3;5\n4")));
 
         assertEquals("5\n4 could'nt be parsed as an integer number", exception.getMessage());
     }
@@ -78,7 +78,7 @@ public class IntParserTest {
         assertEquals(
                 List.of(
                         CheckedInteger.createNewFromString().rawValue("345").build()),
-                emptyCustomParser.parse("345"));
+                emptyCustomParser.parse(new UserInput("345")));
     }
 
 }

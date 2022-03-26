@@ -8,12 +8,13 @@ final class StringCalculator {
     private final SeparatorStrategyFactory separatorStrategyFactory = new SeparatorStrategyFactory();
 
 
-    public int add(String rawNumbers) {
-        var separatorStrategy = this.separatorStrategyFactory.get(rawNumbers);
+    public int add(String rawInput) {
+        var userInput = new UserInput(rawInput);
+        var separatorStrategy = this.separatorStrategyFactory.get(userInput);
         var inputParser = new IntParser(separatorStrategy);
 
 
-        return inputParser.parse(rawNumbers)
+        return inputParser.parse(userInput)
                 .stream()
                 .mapToInt(CheckedInteger::getValue)
                 .sum();
