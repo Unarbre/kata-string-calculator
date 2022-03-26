@@ -2,6 +2,9 @@ package com.unarbre.stringcalculator;
 
 import com.unarbre.stringcalculator.parser.separators.SeparatorUnparsableException;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+
 public class UserInput {
 
     private final String START_SEPARATOR_STRING = "\\";
@@ -41,5 +44,9 @@ public class UserInput {
 
     public boolean hasSeparator() {
         return this.value.startsWith(this.START_SEPARATOR_STRING);
+    }
+
+    public ArrayDeque<String> valueToDeque() {
+        return new ArrayDeque<>(Arrays.asList(this.getCleanedValue().split("")));
     }
 }
