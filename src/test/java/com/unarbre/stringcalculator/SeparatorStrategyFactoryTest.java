@@ -37,4 +37,9 @@ public class SeparatorStrategyFactoryTest {
     public void should_return_custom_with_empty_separator() {
         Assertions.assertEquals(new CustomSeparatorStrategy(""), this.separatorStrategyFactory.get("\\\n35"));
     }
+
+    @Test
+    public void should_handle_number_separator() {
+        Assertions.assertEquals(new CustomSeparatorStrategy("5"), this.separatorStrategyFactory.get("\\5\n35"));
+    }
 }

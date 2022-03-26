@@ -25,6 +25,11 @@ public class StringCalculatorTest {
         assertEquals(5, this.stringCalculator.add("         2,          3"));
     }
 
+    @Test
+    public void should_handle_number_being_a_separator() {
+        assertEquals(5, this.stringCalculator.add("\\5\n253"));
+    }
+
     //endregion
 
 }
