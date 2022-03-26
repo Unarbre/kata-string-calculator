@@ -2,8 +2,12 @@
 
 ### Running precision ###
 To run the application :
+
+You must run it with a version of java 17+ as it relies on pattern matching. 
+
+Command to run :
 ```shell
-gradle run
+gradle run --enable-preview
 ```
 
 ## Incremental kata
