@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StringCalculatorTest {
 
 
-    private final StringCalculator stringCalculator = new StringCalculator(IntParserUtils.getDefaultIntParser());
+    private final StringCalculator stringCalculator = new StringCalculator();
 
     // region Add
 

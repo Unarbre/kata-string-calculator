@@ -19,18 +19,23 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-compileJava {
-    options.encoding = 'UTF-8'
-    options.compilerArgs +=[ "-parameters", "--enable-preview"]
+tasks.withType(JavaExec) {
+    jvmArgs += '--enable-preview'
 }
 
-compileTestJava {
+tasks.withType(JavaCompile) {
+    options.compilerArgs +=["--release", "17"]
     options.compilerArgs +=[ "-parameters", "--enable-preview"]
+
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
     jvmArgs("--enable-preview")
+    testLogging {
+        events "started", "skipped", "failed", "passed"
+        exceptionFormat "full"
+    }
 }
 
 

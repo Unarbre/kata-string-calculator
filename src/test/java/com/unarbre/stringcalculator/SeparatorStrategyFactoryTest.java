@@ -22,7 +22,7 @@ public class SeparatorStrategyFactoryTest {
 
     @Test
     public void should_return_custom_on_specified_separator() {
-        Assertions.assertEquals(new CustomSeparatorStrategy("dog"), this.separatorStrategyFactory.get("\\dog\n"));
+        Assertions.assertEquals(new CustomSeparatorStrategy("dog"), this.separatorStrategyFactory.get("\\dog\n5dog3"));
     }
 
     @Test

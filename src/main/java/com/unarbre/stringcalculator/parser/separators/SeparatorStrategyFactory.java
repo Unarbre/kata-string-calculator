@@ -16,8 +16,8 @@ public class SeparatorStrategyFactory implements Factory<String, SeparatorStrate
     }
 
     private String extractSeparator(String source) {
-        var indexOf = source.indexOf("\n");
-        if (indexOf == -1) {
+        var indexOfSeparator = source.indexOf("\n");
+        if (indexOfSeparator == -1) {
             throw new SeparatorUnparsableException(source + " separator couldn't be parse. Please provide an \\n at the end");
         }
         return source.substring(1, source.indexOf("\n"));
