@@ -42,6 +42,16 @@ public class IntParserTest {
     }
 
     @Test
+    public void should_handle_multi_character_separator() {
+        var multiCharacterSeparatorStrategy = IntParserUtils.getCustomIntParser("dog");
+
+        assertEquals(
+                List.of(CheckedInteger.createNewFromString().rawValue("3").build(),
+                        CheckedInteger.createNewFromString().rawValue("5").build()
+                ), multiCharacterSeparatorStrategy.parse(new UserInput("3dog5")));
+    }
+
+    @Test
     public void should_accept_line_separator_and_semicolons_on_default() {
 
         assertEquals(
