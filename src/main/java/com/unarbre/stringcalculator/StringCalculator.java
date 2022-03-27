@@ -12,11 +12,8 @@ final class StringCalculator {
         var userInput = new UserInput(rawInput);
         var separatorStrategy = this.separatorStrategyFactory.get(userInput);
         var inputParser = new IntParser(separatorStrategy);
+        var additionner = new PositiveIntegerAdditionner();
 
-
-        return inputParser.parse(userInput)
-                .stream()
-                .mapToInt(CheckedInteger::getValue)
-                .sum();
+        return additionner.add(inputParser.parse(userInput));
     }
 }
