@@ -17,6 +17,23 @@ Command to test :
 gradle test
 ```
 
+A Gradlew as been set to fastify gradle version updating.
+
+To run with it :
+```shell
+./gradlew run
+```
+
+To test with it :
+```shell
+./gradlew test
+```
+
+you may also build with :
+```shell
+./gradlew build
+```
+
 ## Incremental kata
 It’s an incremental kata to simulate a real business situation: start of by reading the section 1 and completing it, then go onto section 2, and when you have finished that, look at section 3, etc.
 
