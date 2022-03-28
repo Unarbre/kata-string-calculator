@@ -24,13 +24,13 @@ public class UserInput {
     public String getSeparator() {
         if (!this.hasSeparator()) return "";
 
-        var indexOfSeparator = this.value.indexOf("\n");
+        var indexOfSeparator = this.value.indexOf(END_SEPARATOR_STRING);
         if (indexOfSeparator == -1) {
             throw new SeparatorUnparsableException(this.value + " separator couldn't be parse. " +
                     "Please provide an \\n at the end of the separator");
         }
 
-        return this.value.substring(1, this.value.indexOf("\n"));
+        return this.value.substring(1, this.value.indexOf(END_SEPARATOR_STRING));
     }
 
     public String getCleanedValue() {
