@@ -3,6 +3,8 @@ package com.unarbre.stringcalculator;
 import com.unarbre.stringcalculator.exceptions.NumberParseException;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -15,7 +17,7 @@ public class CheckedIntegerTest {
                 .createNewFromString()
                 .rawValue("43")
                 .build();
-        assertEquals(43, number.getValue());
+        assertEquals(new BigInteger("43"), number.getValue());
     }
 
 
@@ -25,7 +27,7 @@ public class CheckedIntegerTest {
                 .createNewFromString()
                 .rawValue("-3")
                 .build();
-        assertEquals(-3, number.getValue());
+        assertEquals(new BigInteger("-3"), number.getValue());
     }
 
 
@@ -35,7 +37,7 @@ public class CheckedIntegerTest {
                 .createNewFromString()
                 .rawValue("  33 ")
                 .build();
-        assertEquals(33, number.getValue());
+        assertEquals(new BigInteger("33"), number.getValue());
     }
 
     @Test
@@ -63,7 +65,7 @@ public class CheckedIntegerTest {
                 .createNewFromString()
                 .rawValue("")
                 .build();
-        assertEquals(0, number.getValue());
+        assertEquals(new BigInteger("0"), number.getValue());
     }
 
 }
